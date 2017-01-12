@@ -13,8 +13,12 @@
 </div>
 <div class="row">
   <div class="public">
-    <h2>Create as many public wikis as you want!</h2>
-    <%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' %>
+    <% if user_signed_in? %>
+      <h2>Create as many public wikis as you want!</h2>
+      <%= link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success' %>
+    <% elsif !user_signed_in? %>
+      <h2>Sign in to create public wikis, free!</h2>
+    <% end %>
   </div>
   <div class="premium">
     <h2>Create private wikis!</h2>

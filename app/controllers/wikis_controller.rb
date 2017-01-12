@@ -1,4 +1,5 @@
 class WikisController < ApplicationController
+
   def index
     @wikis = Wiki.all
   end
@@ -15,6 +16,7 @@ class WikisController < ApplicationController
     @wiki = Wiki.new
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
+    authorize @wiki
     if @wiki.save
       flash[:notice] = "Wiki was saved."
       redirect_to @wiki
@@ -33,6 +35,7 @@ class WikisController < ApplicationController
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
 
+    authorize @wiki
     if @wiki.save
       flash[:notice] = "Wiki was updated."
       redirect_to @wiki
@@ -45,6 +48,7 @@ class WikisController < ApplicationController
   def destroy
     @wiki = Wiki.find(params[:id])
 
+    authorize @wiki
     if @wiki.destroy
       flash[:notice] = "\"#{@wiki.title}\" was deleted successfully."
       redirect_to wikis_path
@@ -53,4 +57,5 @@ class WikisController < ApplicationController
       render :show
     end
   end
+
 end

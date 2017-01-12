@@ -21,7 +21,9 @@
   <div class="container">
     <ul class="nav nav-tabs">
       <li class="pull-right"><%= link_to "Blocipedia", root_path %></li>
-      <li class="pull-right"><%= link_to "Wikis", wikis_path %></li>
+      <% if user_signed_in? %>
+        <li class="pull-right"><%= link_to "Wikis", wikis_path %></li>
+      <% end %>
     </ul>
   </div>
     <% if flash[:notice] %>
