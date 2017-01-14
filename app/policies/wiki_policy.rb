@@ -11,6 +11,6 @@ class WikiPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    user.admin? || user.id == wiki.user_id
   end
 end
