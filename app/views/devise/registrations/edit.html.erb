@@ -40,4 +40,10 @@
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
+<% if current_user.premium? %>
+  <h3>Cancel Premium Membership</h3>
+
+  <p>Back to Standard? <%= button_to "Downgrade", downgrade_path, data: { confirm: "Are you sure?" }, method: :downgrade %></p>
+
+<% end %>
 <%= link_to "Back", :back %>
