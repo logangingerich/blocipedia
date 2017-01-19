@@ -37,7 +37,10 @@ class WikisController < ApplicationController
     @wiki = Wiki.find(params[:id])
     @wiki.title = params[:wiki][:title]
     @wiki.body = params[:wiki][:body]
-    @wiki.private = params[:wiki][:private]
+    
+    if current_user.admin? || current_user.premium?
+      @wiki.private = params[:wiki][:private]
+    end
 
     authorize @wiki
     if @wiki.save
