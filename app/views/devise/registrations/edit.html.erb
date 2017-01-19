@@ -43,7 +43,7 @@
 <% if current_user.premium? %>
   <h3>Cancel Premium Membership</h3>
 
-  <p>Back to Standard? <%= button_to "Downgrade", downgrade_path, data: { confirm: "Are you sure?" }, method: :downgrade %></p>
+  <p>Back to Standard? <%= button_to "Downgrade", downgrade_path, data: { confirm: "Are you sure? All of your private wikis will be made public." }, method: :downgrade %></p>
 
 <% end %>
 <%= link_to "Back", :back %>

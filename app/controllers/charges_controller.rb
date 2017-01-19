@@ -38,9 +38,8 @@ def create
   end
 
   def downgrade
-    current_user.wikis.each do |wiki|
-      wiki.update(private: false)
-    end
+    current_user.wikis.update_all(private: false)
+
     current_user.update!(role: "standard")
 
     flash[:notice] = "You have successfully downgraded to standard membership."
