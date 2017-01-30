@@ -1,9 +1,9 @@
 <h1>
-  <%= markdown(@wiki.title) %> <br>
+  <%= @wiki.title %> <br>
 </h1>
 <div class="row">
   <div class="col-md-8">
-    <p><%= markdown(@wiki.body) %></p>
+    <p><%= @wiki.body %></p>
   </div>
   <div class="col-md-8">
     <%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-success' %>
