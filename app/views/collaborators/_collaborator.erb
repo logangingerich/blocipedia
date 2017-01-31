@@ -1,13 +1,24 @@
 <% if current_user.admin? || current_user.id == @wiki.user_id %>
+  <h2>Current Collaborators</h2>
+    <%= @wiki.users.each do |x| %>
+      <div class="collaborators">
+        <%= x.email %>
+      </div>
+    <% end %>
   <h2>Add Collaborator?</h2>
   <%= form_for Collaborator.new do |f| %>
-    <% User.all.each do |user| %>
+    <%= User.all.each do |user| %>
+      <%= f.hidden_field :wiki_id, value: @wiki.id %>
+       <%= f.hidden_field :user_id, value: user.id %>
       <div class="user">
         <%= user.email %>
       </div>
-      <div class="form-group">
-        <%= f.submit "Add As Collaborator", class: 'btn btn-success' %>
-      </div>
+      <% if !@wiki.users.include?(user) %>
+        <div class="form-group">
+          <%= f.submit "Add As Collaborator", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+
     <% end %>
   <% end %>
 <% end %>
