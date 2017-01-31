@@ -6,8 +6,8 @@
       </div>
     <% end %>
   <h2>Add Collaborator?</h2>
-  <% User.all.each do |user| %>
-    <%= form_for Collaborator.new do |f| %>
+  <% @users.each do |user| %>
+    <%= form_for @collaborator do |f| %>
       <div class="form=group">
         <%= user.email %>
         <%= f.hidden_field :wiki_id, value: @wiki.id %>
@@ -18,7 +18,7 @@
           <%= f.submit "Add As Collaborator", class: 'btn btn-success' %>
         </div>
       <% elsif @wiki.users.include?(user) %>
-      <% Collaborator.all.each do |collaborator| %>
+      <% @collaborators.each do |collaborator| %>
         <div class="form=group">
           <%= link_to "Remove", collaborator_path(collaborator.id), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to remove this collaborator?'} %>
         </div>
