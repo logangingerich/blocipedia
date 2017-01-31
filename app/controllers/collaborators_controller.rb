@@ -1,5 +1,15 @@
 class CollaboratorsController < ApplicationController
 
+  def index
+    @collaborators = Collaborator.all
+    @wiki = Wiki.find(params[:wiki_id])
+  end
+
+  def new
+    @wiki = Wiki.find(params[:wiki_id])
+    @collaborator = Collaborator.new
+  end
+
   def create
     @wiki = Wiki.find(params[:collaborator][:wiki_id])
     @users = User.find(params[:collaborator][:user_id])
@@ -15,9 +25,10 @@ class CollaboratorsController < ApplicationController
   end
 
   def destroy
+
     @collaborator = Collaborator.find(params[:id])
 
-    if collaborator.destroy
+    if @collaborator.destroy
       flash[:notice] = "Collaborator has been deleted"
     else
       flash[:alert] = "There was an error deleting collaborators."
