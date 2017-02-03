@@ -34,3 +34,5 @@ gem 'devise'
 gem 'pundit'
 gem 'stripe'
 gem 'redcarpet'
+gem "haml-rails", "~> 0.9"
+gem 'haml'

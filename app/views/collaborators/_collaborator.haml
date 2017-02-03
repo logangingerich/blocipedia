@@ -1,0 +1,19 @@
+- if current_user.admin? || current_user.id == @wiki.user_id
+  %h2 Current Collaborators
+  - @wiki.users.each do |x|
+    .collaborators
+      = x.email
+  %h2 Add Collaborator?
+  - @users.each do |user|
+    = form_for @collaborator do |f|
+      %div{:class => "form=group"}
+        = user.email
+        = f.hidden_field :wiki_id, value: @wiki.id
+        = f.hidden_field :user_id, value: user.id
+      - if !@wiki.users.include?(user)
+        %div{:class => "form=group"}
+          = f.submit "Add As Collaborator", class: 'btn btn-success'
+      - elsif @wiki.users.include?(user)
+        - @collaborators.each do |collaborator|
+          %div{:class => "form=group"}
+            = link_to "Remove", collaborator_path(collaborator.id), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to remove this collaborator?'}

@@ -1,5 +1,0 @@
-<%= form_tag charges_path do %>
-  <h4>Click to upgrade to a Premium Membership!</h4>
-  <h5>Create private wikis that only you can see for just $15.00<h5>
-  <script class='stripe-button' src="https://checkout.stripe.com/checkout.js" data-key="<%= @stripe_btn_data[:key] %>" data-amount="<%= @stripe_btn_data[:amount] %>" data-description="<%= @stripe_btn_data[:description] %>" ></script>
-<% end %>

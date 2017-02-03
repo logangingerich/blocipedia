@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Blocipedia
+    %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}/
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .container
+      %ul.nav.nav-tabs
+        - if user_signed_in?
+          Signed in as:
+          %strong= current_user.email
+          |
+          \#{link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'} - #{link_to "Sign Out", destroy_user_session_path, method: :delete, :class => 'navbar-link'}
+        - else
+          = link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'
+          \-
+          \#{link_to "Sign In", new_user_session_path, :class => 'navbar-link'}
+      .container
+        %ul.nav.nav-tabs
+          %li.pull-right= link_to "Blocipedia", root_path
+          - if user_signed_in?
+            %li.pull-right= link_to "Wikis", wikis_path
+      - if flash[:notice]
+        .alert.alert-success
+          %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          = flash[:notice]
+      - elsif flash[:alert]
+        .alert.alert-warning
+          %button.close{"data-dismiss" => "alert", :type => "button"} ×
+          = flash[:alert]
+      = yield

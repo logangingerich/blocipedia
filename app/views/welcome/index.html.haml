@@ -1,0 +1,23 @@
+%br/
+.jumbotron
+  %h1 Blocipedia
+  %p Social, Markdown Wikis
+.row
+  .col-md-4
+    %h2 Create and share Markdown Wikis
+    - if !user_signed_in?
+      %button= link_to "Sign Up", new_user_registration_path, :class => 'navbar-link'
+.row
+  .public
+    - if user_signed_in?
+      %h2 Create as many public wikis as you want!
+      = link_to "Create New Wiki", new_wiki_path, class: 'btn btn-success'
+    - elsif !user_signed_in?
+      %h2 Sign in to create public wikis, free!
+  .premium
+    - if current_user.standard?
+      %h2 Sign up for Premium to create private wikis!
+      = link_to "Sign Up For Premium", new_charge_path, class: 'btn btn-success'
+    - elsif current_user.premium? || current_user.admin?
+      %h2 Create a private wiki!
+      = link_to "Create Private Wiki", new_wiki_path, class: 'btn btn-success'
