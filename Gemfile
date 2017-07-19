@@ -8,7 +8,7 @@ group :production do
 end
 
 group :developement do
-  #gem 'sqlite3'
+  gem 'sqlite3'
   gem 'web-console', '~> 2.0'
 end
 
