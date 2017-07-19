@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Blocipedia</title>
+  <title>Geekipedia</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -20,7 +20,7 @@
     </ul>
   <div class="container">
     <ul class="nav nav-tabs">
-      <li class="pull-right"><%= link_to "Blocipedia", root_path %></li>
+      <li class="pull-right"><%= link_to "Geekipedia", root_path %></li>
       <% if user_signed_in? %>
         <li class="pull-right"><%= link_to "Wikis", wikis_path %></li>
       <% end %>
